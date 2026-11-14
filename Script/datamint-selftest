@@ -1,0 +1,26 @@
+#!/bin/bash
+# datamint-selftest : memeriksa semua komponen DataMint-OS
+export PLAYWRIGHT_BROWSERS_PATH=/opt/playwright-browsers
+
+cek() {
+  if eval "$2" >/dev/null 2>&1; then
+    echo "[OK]     $1"
+  else
+    echo "[GAGAL]  $1"
+  fi
+}
+
+echo "== DataMint-OS Self Test =="
+cek "Python3" "python3 --version"
+cek "SQLite3" "sqlite3 --version"
+cek "DuckDB CLI" "duckdb --version"
+cek "R-Base" "R --version"
+cek "Firefox" "firefox --version"
+cek "geckodriver" "geckodriver --version"
+cek "VSCodium" "dpkg -s codium"
+cek "Modul Python" "/opt/datamint-venv/bin/python -c 'import pandas,polars,bs4,scrapy,selenium,playwright,duckdb'"
+cek "JupyterLab" "/opt/datamint-venv/bin/jupyter lab --version"
+cek "Kernel DataMint Python" "/opt/datamint-venv/bin/jupyter kernelspec list | grep -q datamint"
+cek "Browser Playwright" "ls /opt/playwright-browsers | grep -q chromium"
+cek "Helper datamint-new" "command -v datamint-new"
+cek "Helper datamint-scrape" "command -v datamint-scrape"

@@ -1,0 +1,7 @@
+* text=auto 
+*.sh text eol=lf 
+datamint-new text eol=lf 
+datamint-scrape text eol=lf 
+datamint-selftest text eol=lf 
+*.plymouth text eol=lf 
+*.script text eol=lf 

@@ -1,0 +1,9 @@
+celluloid
+drawing
+hypnotix
+rhythmbox
+rhythmbox-plugins
+rhythmbox-plugin-tray-icon
+thunderbird
+transmission-gtk
+warpinator

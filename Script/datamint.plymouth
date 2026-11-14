@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=DataMint
+Description=Boot splash DataMint-OS dengan logo heksagon dan bar progres
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/datamint
+ScriptFile=/usr/share/plymouth/themes/datamint/datamint.script

@@ -1,0 +1,20 @@
+-V 'Linux Mint 22.3 Xfce 64-bit'
+--modification-date='2026010821093200'
+-isohybrid-mbr --interval:local_fs:0s-15s:zero_mbrpt,zero_gpt,zero_apm:'linuxmint-22.3-xfce-64bit.iso'
+-partition_cyl_align on
+-partition_offset 16
+-partition_hd_cyl 181
+-partition_sec_hd 32
+--mbr-force-bootable
+-apm-block-size 2048
+-iso_mbr_part_type 0x00
+-c '/isolinux/boot.cat'
+-b '/isolinux/isolinux.bin'
+-no-emul-boot
+-boot-load-size 4
+-boot-info-table
+-eltorito-alt-boot
+-e '/boot/grub/efi.img'
+-no-emul-boot
+-isohybrid-gpt-basdat
+-isohybrid-apm-hfsplus

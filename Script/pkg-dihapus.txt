@@ -1,0 +1,7 @@
+celluloid
+drawing
+hypnotix
+rhythmbox
+thunderbird
+transmission-gtk
+warpinator

@@ -1,0 +1,34 @@
+#!/bin/bash
+# datamint-new : membuat proyek analisis data baru (folder, venv, template notebook)
+set -e
+
+if [ -z "$1" ]; then
+  echo "Pemakaian: datamint-new nama-proyek"
+  exit 1
+fi
+
+NAME="$1"
+if [ -e "$NAME" ]; then
+  echo "Folder '$NAME' sudah ada."
+  exit 1
+fi
+
+mkdir -p "$NAME"/data/raw "$NAME"/data/processed "$NAME"/notebooks "$NAME"/src "$NAME"/reports
+cd "$NAME"
+
+/usr/bin/python3 -m venv .venv
+SHARED=$(/opt/datamint-venv/bin/python -c "import sysconfig;print(sysconfig.get_paths()['purelib'])")
+LOCAL=$(.venv/bin/python -c "import sysconfig;print(sysconfig.get_paths()['purelib'])")
+echo "$SHARED" > "$LOCAL/datamint-shared.pth"
+
+printf '.venv/\n__pycache__/\n.ipynb_checkpoints/\ndata/raw/\n' > .gitignore
+
+printf '# %s\n\nProyek analisis data dibuat dengan DataMint-OS.\n\n## Struktur\n- data/raw : data mentah\n- data/processed : data hasil olahan\n- notebooks : notebook Jupyter\n- src : kode Python\n- reports : laporan dan grafik\n' "$NAME" > README.md
+
+cat > notebooks/analisis.ipynb <<'NB'
+{"cells":[{"cell_type":"markdown","metadata":{},"source":["# Analisis Data"]},{"cell_type":"code","execution_count":null,"metadata":{},"outputs":[],"source":["import pandas as pd\n","import duckdb\n"]}],"metadata":{"kernelspec":{"display_name":"DataMint Python","language":"python","name":"datamint"}},"nbformat":4,"nbformat_minor":5}
+NB
+
+echo "Proyek '$NAME' siap."
+echo "Masuk dengan: cd $NAME && source .venv/bin/activate"
+echo "Buka notebook: jupyter lab"
