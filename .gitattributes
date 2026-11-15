@@ -5,3 +5,4 @@ datamint-scrape text eol=lf
 datamint-selftest text eol=lf 
 *.plymouth text eol=lf 
 *.script text eol=lf 
+"* text=auto eol=lf" 
